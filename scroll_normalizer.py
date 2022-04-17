@@ -13,18 +13,14 @@ from simfile.timing.displaybpm import displaybpm, StaticDisplayBPM
 from simfile.types import Simfile
 
 
-def get_fixed_bpm(sim: Simfile, td: TimingData) -> Decimal:
+def get_fixed_bpm(sim: Simfile) -> Decimal:
     '''
     Get a reasonable canonical BPM for the simfile.
 
-    If a single DISPLAYBPM is set, that will be used. Otherwise, the
-    song's initial BPM will be used.
+    If a DISPLAYBPM is set, its maximum bpm will be used.
+    Otherwise, the song's maximum BPM will be used.
     '''
-    if sim.displaybpm:
-            displayed_bpm = displaybpm(sim)
-            if isinstance(displayed_bpm, StaticDisplayBPM):
-                return displayed_bpm.value
-    return td.bpms[0].value
+    return displaybpm(sim).max
 
 
 def scroll_value(fixed_bpm: Decimal, current_bpm: Decimal):
@@ -35,7 +31,7 @@ def scroll_value(fixed_bpm: Decimal, current_bpm: Decimal):
 def fixedscroll(sim: SSCSimfile):
     '''Set the simfile's scrolls to counteract any BPM changes.'''
     timing = TimingData(sim)
-    fixed_bpm = get_fixed_bpm(sim, timing)
+    fixed_bpm = get_fixed_bpm(sim)
     sim.scrolls = str(BeatValues([
         BeatValue(beat=bpm.beat, value=scroll_value(fixed_bpm, bpm.value))
         for bpm in timing.bpms
