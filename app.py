@@ -12,7 +12,7 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() == 'ssc'
 
 @app.route("/")
-def hello_world():
+def landing_page():
     return '''
     <!doctype html>
     <title>Upload new File</title>
