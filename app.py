@@ -1,4 +1,4 @@
-from flask import Flask, flash, request, redirect, url_for, send_file
+from flask import Flask, request, redirect, send_file, render_template
 
 import io
 import simfile
@@ -12,23 +12,8 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() == 'ssc'
 
 @app.route("/")
-def landing_page():
-    return '''
-    <!doctype html>
-    <title>[14] Bermuda Triangle</title>
-    <h1>Upload a .ssc file to normalize its scroll rate!</h1>
-    <p>
-    This is a tiny tool that modifies StepMania 5 stepcharts with BPM changes so they scroll at a constant rate, even when played using an x-mod or m-mod.
-    It does this by calculating a target reading bpm based on the max DISPLAYBPM if present, or max BPM otherwise, and then using SCROLL changes so slower BPM
-    segments all scroll at that target reading speed.  Note that any existing SCROLL changes in the file will be replaced!
-    This tool builds on top of Ash's incredible <a href="https://github.com/garcia/simfile">simfile</a> library.
-    It was made by <a href="https://mobile.twitter.com/bkirz">@bkirz</a>; the source code is available <a href="https://github.com/bkirz/scroll-normalizer">on GitHub</a>.
-    </p>
-    <form method=post enctype=multipart/form-data>
-      <input type=file name=sscfile>
-      <input type=submit value=Upload>
-    </form>
-    '''
+def index():
+    return render_template("index.html")
 
 @app.route("/", methods=["POST"])
 def upload_file():
