@@ -19,7 +19,7 @@ def landing_page():
     <h1>Upload a .ssc file to normalize its scroll rate!</h1>
     <p>
     This is a tiny tool that modifies StepMania 5 stepcharts with BPM changes so they scroll at a constant rate, even when played using an x-mod or m-mod.
-    This tool builds on top of <a href="https://meow.garden/about">@ashastral</a>'s incredible <a href="https://github.com/garcia/simfile">simfile</a> library
+    This tool builds on top of Ash's incredible <a href="https://github.com/garcia/simfile">simfile</a> library
     and is currently very minimal! This tool was made by <a href="https://mobile.twitter.com/bkirz">@bkirz</a>; the source code is available <a href="https://github.com/bkirz/scroll-normalizer">on GitHub</a>.
     </p>
     <form method=post enctype=multipart/form-data>
