@@ -5,6 +5,5 @@ name = "pypi"
 
 [packages]
 simfile = "*"
-msdparser = "==1.0.0"
 flask = "*"
 gunicorn = "*"
