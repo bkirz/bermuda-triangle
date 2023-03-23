@@ -1,0 +1,29 @@
+<!doctype html>
+<title>Bermuda Triangle | make mines fake</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<header>
+  <b>Bermuda △ Triangle</b>
+  <nav>
+    Tools:
+    {% block navigation %}
+      <a href="/scroll-normalizer">scroll normalizer</a>
+    {% endblock %}
+  </nav>
+</header>
+
+<main>
+  <h1>{% block headline %}{% endblock %}</h1>
+  <section>{% block description %}{% endblock %}</section>
+  <section>{% block input %}{% endblock %}</section>
+</main>
+
+<footer>
+  <p>
+    bermudatriangle.tech was made by <a href="https://mobile.twitter.com/bkirz">@bkirz</a>
+    and <a href="https://twitter.com/ashastral">@ashastral</a>
+    and builds on top of the <a href="https://github.com/garcia/simfile">simfile</a> library for Python.
+    <br/>
+    Its source code is available <a href="https://github.com/bkirz/scroll-normalizer">on GitHub</a>.
+  </p>
+</footer>

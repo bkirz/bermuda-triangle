@@ -1,22 +1,30 @@
-from flask import Flask, request, redirect, send_file, render_template
+from flask import Flask, request, redirect, send_file, render_template, make_response
 
 import io
 import simfile
+from make_mines_fake import make_mines_fake, MakeMinesFakeArgs, SameBeatMineAndNoteError
 from scroll_normalizer import fixedscroll
 
 
 app = Flask(__name__)
 
-def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() == 'ssc'
+
+def valid_ssc_file(filename):
+    return "." in filename and filename.rsplit(".", 1)[1].lower() == "ssc"
+
 
 @app.route("/")
 def index():
-    return render_template("index.html.jinja")
+    return redirect("/scroll-normalizer")
 
-@app.route("/", methods=["POST"])
-def upload_file():
+
+@app.route("/scroll-normalizer")
+def scroll_normalizer():
+    return render_template("scroll-normalizer.html.jinja")
+
+
+@app.route("/scroll-normalizer", methods=["POST"])
+def scroll_normalizer_upload():
     # check if the post request has the file part
     if 'sscfile' not in request.files:
         return redirect(request.url)

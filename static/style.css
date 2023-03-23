@@ -1,3 +1,70 @@
-html { font-family: sans-serif; background: white; padding: 1rem; }
-body { max-width: 960px; margin: 10px auto; }
-h1 { color: #99c; margin: 1rem 0; }
+/* Colors taken from https://accessiblepalette.com/ */
+
+body {
+    max-width: 960px;
+    margin: 0 auto;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: white;
+    color: #3b3b3b;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+a {
+    color: #1993d0;
+}
+a:visited {
+    color: #6268ca;
+}
+
+h1 {
+    color: #0078b4;
+    margin: 1rem 0;
+}
+
+header, footer {
+    background-color: #eceef1;
+    padding: 1em;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+footer p {
+    color: #5f5f5f;
+    font-size: 80%;
+    margin: 0;
+}
+
+main {
+    padding: 1em;
+    flex-grow: 1;
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #3b3b3b;
+        color: #ededed;
+    }
+
+    a {
+        color: #51aedc;
+    }
+    a:visited {
+        color: #b4b8f1;
+    }
+
+    h1 {
+        color: #82c5e6;
+    }
+
+    header, footer {
+        background-color: #424c5a;
+    }
+
+    footer p {
+        color: #d4d4d4;
+    }
+}

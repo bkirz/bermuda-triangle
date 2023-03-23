@@ -1,0 +1,36 @@
+{% extends "base.html.jinja" %}
+
+{% block navigation %}
+  <b>scroll normalizer</b>
+{% endblock %}
+
+{% block headline %}
+  Upload a .ssc file to normalize its scroll rate!
+{% endblock %}
+
+{% block description %}
+  <p>
+    This tiny tool modifies StepMania 5 stepcharts with BPM changes
+    so they scroll at a constant rate,
+    even when played using an x-mod or m-mod.
+    It calculates a target reading bpm
+    based on the max DISPLAYBPM if present,
+    or max BPM otherwise,
+    and then applies SCROLL changes
+    so slower BPM segments all scroll at that target reading speed.
+  </p>
+  <p>
+    Note that this tool does not account for
+    STOPS, SPEEDS, DELAYS, or WARPS.
+    If your chart contains those,
+    they will still be present in the output
+    and will still affect your chart's scroll behavior.
+  </p>
+{% endblock %}
+
+{% block input %}
+  <form method=post enctype=multipart/form-data>
+    <input type=file name=sscfile>
+    <input type=submit value=Upload>
+  </form>
+{% endblock %}
