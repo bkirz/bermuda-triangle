@@ -1,0 +1,39 @@
+{% extends "base.html.jinja" %}
+
+{% block navigation %}
+  <a href="/scroll-normalizer">scroll normalizer</a>
+  |
+  <b>make mines fake</b>
+{% endblock %}
+
+{% block headline %}
+  Upload a .ssc file to make its mines fake!
+{% endblock %}
+
+{% block description %}
+  <p>
+    This tiny tool modifies StepMania 5 stepcharts with short fake segments
+    so that mines never trigger during gameplay.
+  </p>
+  <p>
+    If there are problems with your file,
+    you'll get an error message.
+    You can work around most errors using the checkboxes.
+    Note that these checkboxes enable behavior
+    that may be unintuitive to you or your player base!
+  </p>
+{% endblock %}
+
+{% block input %}
+<form method=post enctype=multipart/form-data>
+  <input type=file name=sscfile>
+  <br /><br />
+  <input type=checkbox name=allow_split_timing id=allow_split_timing>
+  <label for=allow_split_timing>Allow split timing (if necessary to avoid simultaneous note & mine on different charts)</label>
+  <br />
+  <input type=checkbox name=allow_simultaneous id=allow_simultaneous>
+  <label for=allow_simultaneous>Allow simultaneous note & mine on same chart (will <b>not</b> be turned fake)</label>
+  <br /><br />
+  <input type=submit value=Upload>
+</form>
+{% endblock %}
