@@ -141,7 +141,8 @@ def splittiming(ssc: simfile.ssc.SSCSimfile, chart: simfile.ssc.SSCChart) -> Non
         "SCROLLS",
         "FAKES",
     ):
-        chart[td] = ssc[td]
+        if td in ssc:
+            chart[td] = ssc[td]
 
 
 ################
