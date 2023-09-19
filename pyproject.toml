@@ -2,7 +2,7 @@
 name = "bermuda-triangle"
 version = "0.1.0"
 description = ""
-authors = ["Ben Kirzhner <ben.kirzhner@gmail.com>"]
+authors = ["Ben Kirzhner <ben.kirzhner@gmail.com>", "Ash Garcia <github@garcia.sh>"]
 readme = "README.md"
 packages = [{include = "bermuda_triangle"}]
 
