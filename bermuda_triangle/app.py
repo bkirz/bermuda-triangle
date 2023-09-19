@@ -2,8 +2,8 @@ from flask import Flask, request, redirect, send_file, render_template, make_res
 
 import io
 import simfile
-from make_mines_fake import make_mines_fake, MakeMinesFakeArgs, SameBeatMineAndNoteError
-from scroll_normalizer import fixedscroll
+from .make_mines_fake import make_mines_fake, MakeMinesFakeArgs, SameBeatMineAndNoteError
+from .scroll_normalizer import fixedscroll
 
 
 app = Flask(__name__)
