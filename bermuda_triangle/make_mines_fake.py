@@ -319,7 +319,7 @@ def get_notes_and_mines(ssc: simfile.ssc.SSCSimfile) -> NotesAndMines:
                     )
                     chart_mine_positions.append(position)
 
-                case NoteType.FAKE:
+                case NoteType.FAKE | NoteType.TAIL:
                     pass
 
                 case _:  # Any hittable or scoreable "note"
@@ -445,6 +445,7 @@ def make_mines_fake(
         for note_group in group_notes(
             NoteData(chart),
             same_beat_notes=SameBeatNotes.JOIN_ALL,
+            join_heads_to_tails=True,
         ):
             if any(note.note_type == NoteType.MINE for note in note_group):
                 beat = note_group[0].beat
