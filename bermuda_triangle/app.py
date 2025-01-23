@@ -2,8 +2,10 @@ from flask import Flask, request, redirect, send_file, render_template, make_res
 
 import io
 import simfile
+import simfile.convert
 from .make_mines_fake import make_mines_fake, MakeMinesFakeArgs, SameBeatMineAndNoteError
 from .scroll_normalizer import fixedscroll
+from pathlib import PurePath
 
 
 app = Flask(__name__)
@@ -41,16 +43,28 @@ def scroll_normalizer_upload():
     input_file_contents = file.stream.read().decode("utf-8")
     ssc = simfile.loads(input_file_contents)
 
+    input_filename = PurePath(file.filename)
+
+    # We always want to return an ssc, even if the input is a .sm file,
+    # since only .ssc files can contain SCROLL segments.
+    if ssc.__class__ == simfile.sm.SMSimfile:
+        ssc = simfile.convert.sm_to_ssc(ssc)
+
+    output_filename = str(
+        input_filename
+            .with_suffix(".ssc")
+            .with_stem(input_filename.stem + "-normalized")
+    )
+
     fixedscroll(
         ssc
     )  # mutates the ssc in-place to normalize its scroll rate across bpm changes
-    filename = file.filename.replace(".ssc", "-normalized.ssc")
 
     # Again, assume utf-8. This should be safe since the input was assumed to be utf-8
     # and AFAICT simfile preserves encoding.
     output_io = io.BytesIO(str(ssc).encode("utf-8"))
 
-    return send_file(output_io, as_attachment=True, download_name=filename)
+    return send_file(output_io, as_attachment=True, download_name=output_filename)
 
 
 @app.route("/fake-mines")
