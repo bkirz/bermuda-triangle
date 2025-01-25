@@ -47,7 +47,7 @@ def scroll_normalizer_upload():
 
     # We always want to return an ssc, even if the input is a .sm file,
     # since only .ssc files can contain SCROLL segments.
-    if ssc.__class__ == simfile.sm.SMSimfile:
+    if isinstance(ssc, simfile.sm.SMSimfile):
         ssc = simfile.convert.sm_to_ssc(ssc)
 
     output_filename = str(
