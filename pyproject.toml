@@ -10,7 +10,7 @@ packages = [{include = "bermuda_triangle"}]
 python = "3.11.5"
 simfile = "^2.1.1"
 gunicorn = "^23.0.0"
-flask = "^3.0.3"
+flask = "^3.1.0"
 python-dotenv = "^1.0.1"
 
 
