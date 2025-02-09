@@ -132,6 +132,7 @@ def splittiming(ssc: simfile.ssc.SSCSimfile, chart: simfile.ssc.SSCChart) -> Non
         "STOPS",
         "DELAYS",
         "BPMS",
+        "OFFSET",
         "WARPS",
         "LABELS",
         "TIMESIGNATURES",
