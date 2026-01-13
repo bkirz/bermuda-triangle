@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, send_file, render_template, make_response
+from flask import Flask, flash, request, redirect, send_file, render_template, make_response
 
 import io
 import simfile
@@ -10,6 +10,9 @@ from pathlib import PurePath
 
 app = Flask(__name__)
 
+# TODO: Generate this and inject it into the env
+# instead of keeping it in source control.
+app.secret_key = 'sekret'
 
 def valid_ssc_file(filename):
     return "." in filename and filename.rsplit(".", 1)[1].lower() == "ssc"
@@ -103,9 +106,8 @@ def fake_mines_upload():
     try:
         make_mines_fake(ssc, args)
     except SameBeatMineAndNoteError as e:
-        response = make_response(str(e), 200)
-        response.mimetype = "text/plain"
-        return response
+        flash(str(e))
+        return redirect(request.url)
 
     filename = (file.filename or "file.ssc").replace(".ssc", "-fakemines.ssc")
 
