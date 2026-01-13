@@ -1,6 +1,7 @@
 from flask import Flask, flash, request, redirect, send_file, render_template, make_response
 
 import io
+import os
 import simfile
 import simfile.convert
 from .make_mines_fake import make_mines_fake, MakeMinesFakeArgs, SameBeatMineAndNoteError
@@ -10,9 +11,18 @@ from pathlib import PurePath
 
 app = Flask(__name__)
 
-# TODO: Generate this and inject it into the env
-# instead of keeping it in source control.
-app.secret_key = 'sekret'
+stage = os.environ.get('STAGE', 'test')
+secret_key = os.environ.get('FLASK_SECRET_KEY')
+
+if stage == 'test':
+    secret_key = 'FLASK_SECRET_KEY env var not set'
+    print('FLASK_SECRET_KEY env var is unset.')
+else:
+    assert secret_key is not None
+
+
+app.secret_key = secret_key
+
 
 def valid_ssc_file(filename):
     return "." in filename and filename.rsplit(".", 1)[1].lower() == "ssc"
