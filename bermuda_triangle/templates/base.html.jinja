@@ -17,19 +17,16 @@
 <main>
   <h1>{% block headline %}{% endblock %}</h1>
   <section>{% block description %}{% endblock %}</section>
-  <section>{% block flashes %}
+  <section>
     {% with messages = get_flashed_messages() %}
-      {% if messages %}
+      {% for message in messages %}
         <div class="alert alert-danger">
-          <ul class="flashes">
-          {% for message in messages %}
-            <li>{{ message }}</li>
-          {% endfor %}
-          </ul>
+           {{ message|e }}
         </div>
-      {% endif %}
+      {% endfor %}
     {% endwith %}
-  {% endblock%}</section>
+    {% block custom_errors %}{% endblock %}
+  </section>
   <section>{% block input %}{% endblock %}</section>
 </main>
 
