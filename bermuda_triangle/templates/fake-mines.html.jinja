@@ -37,6 +37,8 @@
               <li>{{ same_beat_error._stringify_simultaneous(same_beat_mine_and_note) }}</li>
             {% endfor %}
           </ul>
+          Ignoring these occurrences will leave the mines on these beats hittable,
+          which may surprise players. Consider relocating these mines instead.
         {% endif %}
         {% if same_beat_error.must_allow_split_timing %}
           Simultaneous mine & note in different charts (ignore with 'Allow split timing'):<br />
@@ -45,6 +47,8 @@
               <li>{{ same_beat_error._stringify_simultaneous(same_beat_mine_and_note) }}</li>
             {% endfor %}
           </ul>
+          Note that split timing makes it easy to mess up the timing data if you are
+          still making changes to the chart. Use this feature with caution.
         {% endif %}
       </div>
   {% endif %}
