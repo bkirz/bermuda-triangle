@@ -24,6 +24,36 @@
   </p>
 {% endblock %}
 
+{% block custom_errors %}
+  {% if same_beat_error %}
+      <div class="alert alert-danger">
+        There are simultaneous mines and notes in your file;
+        you will have to either update the chart or opt into
+        certain behavior in order to remedy this error.<br /><br />
+        {% if same_beat_error.must_allow_simultaneous %}
+          Simultaneous mine & note in the same chart (ignore with 'Allow simultaneous note & mine'):<br />
+          <ul>
+            {% for same_beat_mine_and_note in same_beat_error.must_allow_simultaneous %}
+              <li>{{ same_beat_error._stringify_simultaneous(same_beat_mine_and_note) }}</li>
+            {% endfor %}
+          </ul>
+          Ignoring these occurrences will leave the mines on these beats hittable,
+          which may surprise players. Consider relocating these mines instead.
+        {% endif %}
+        {% if same_beat_error.must_allow_split_timing %}
+          Simultaneous mine & note in different charts (ignore with 'Allow split timing'):<br />
+          <ul>
+            {% for same_beat_mine_and_note in same_beat_error.must_allow_split_timing %}
+              <li>{{ same_beat_error._stringify_simultaneous(same_beat_mine_and_note) }}</li>
+            {% endfor %}
+          </ul>
+          Note that split timing makes it easy to mess up the timing data if you are
+          still making changes to the chart. Use this feature with caution.
+        {% endif %}
+      </div>
+  {% endif %}
+{% endblock %}
+
 {% block input %}
 <form method=post enctype=multipart/form-data>
   <input type=file name=sscfile>

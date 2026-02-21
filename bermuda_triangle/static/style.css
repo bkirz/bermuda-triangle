@@ -23,6 +23,21 @@ h1 {
     margin: 1rem 0;
 }
 
+/* taken from bootstrap */
+.alert {
+    position: relative;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}
+
+.alert-danger {
+    color: #b85143;
+    background-color: #ffe9e6;
+    border-color: #ffc8c0;
+}
+
 header, footer {
     background-color: #eceef1;
     padding: 1em;
@@ -58,6 +73,12 @@ main {
 
     h1 {
         color: #82c5e6;
+    }
+
+    .alert-danger {
+        color: #fe7f6e;
+        background-color: #5d2822;
+        border-color: #7d372d;
     }
 
     header, footer {

@@ -17,6 +17,16 @@
 <main>
   <h1>{% block headline %}{% endblock %}</h1>
   <section>{% block description %}{% endblock %}</section>
+  <section>
+    {% with messages = get_flashed_messages() %}
+      {% for message in messages %}
+        <div class="alert alert-danger">
+           {{ message|e }}
+        </div>
+      {% endfor %}
+    {% endwith %}
+    {% block custom_errors %}{% endblock %}
+  </section>
   <section>{% block input %}{% endblock %}</section>
 </main>
 
